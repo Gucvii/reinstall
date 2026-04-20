@@ -6,9 +6,10 @@
 # alpine 默认没有 bash，因此 shebang 用 sh，再 exec 切换到 bash
 
 set -eE
-confhome=https://raw.githubusercontent.com/bin456789/reinstall/main
-confhome_cn=https://cnb.cool/bin456789/reinstall/-/git/raw/main
-# confhome_cn=https://www.ghproxy.cc/https://raw.githubusercontent.com/bin456789/reinstall/main
+# 上游锁定：指向 fork + 固定 commit
+confhome=https://raw.githubusercontent.com/Gucvii/reinstall/ae3ad40
+confhome_cn=https://cnb.cool/Gucvii/reinstall/-/git/raw/ae3ad40
+# confhome_cn=https://www.ghproxy.cc/https://raw.githubusercontent.com/Gucvii/reinstall/ae3ad40
 
 # 用于判断 reinstall.sh 和 trans.sh 是否兼容
 SCRIPT_VERSION=4BACD833-A585-23BA-6CBB-9AA4E08E0004
@@ -219,7 +220,7 @@ is_in_china() {
         # 备用 www.prologis.cn
         # 备用 www.autodesk.com.cn
         # 备用 www.keysight.com.cn
-        if ! _loc=$(curl -L http://www.qualcomm.cn/cdn-cgi/trace | grep '^loc=' | cut -d= -f2 | grep .); then
+        if ! _loc=$(curl -L https://www.qualcomm.cn/cdn-cgi/trace | grep '^loc=' | cut -d= -f2 | grep .); then
             error_and_exit "Can not get location."
         fi
         echo "Location: $_loc" >&2

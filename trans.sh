@@ -16,6 +16,9 @@ TRUE=0
 FALSE=1
 EFI_UUID=C12A7328-F81F-11D2-BA4B-00A0C93EC93B
 
+# 上游锁定：指向 fork + 固定 commit
+confhome=https://raw.githubusercontent.com/Gucvii/reinstall/ae3ad40
+
 error() {
     color='\e[31m'
     plain='\e[0m'
