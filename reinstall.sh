@@ -1163,9 +1163,9 @@ setos() {
 
         # 不要用https 因为甲骨文云arm initramfs阶段不会从硬件同步时钟，导致访问https出错
         if is_in_china; then
-            mirror=http://mirror.nju.edu.cn/alpine/v$releasever
+            mirror=https://mirror.nju.edu.cn/alpine/v$releasever
         else
-            mirror=http://dl-cdn.alpinelinux.org/alpine/v$releasever
+            mirror=https://dl-cdn.alpinelinux.org/alpine/v$releasever
         fi
         eval ${step}_vmlinuz=$mirror/releases/$basearch/netboot/vmlinuz-$flavour
         eval ${step}_initrd=$mirror/releases/$basearch/netboot/initramfs-$flavour
@@ -1293,7 +1293,7 @@ Continue?
                 hostname=kali.download
             fi
             codename=kali-rolling
-            mirror=http://$hostname/kali/dists/$codename/main/installer-$basearch_alt/current/images/netboot/debian-installer/$basearch_alt
+            mirror=https://$hostname/kali/dists/$codename/main/installer-$basearch_alt/current/images/netboot/debian-installer/$basearch_alt
 
             is_virt && flavour=-cloud || flavour=
 
@@ -1397,8 +1397,7 @@ Continue?
             if is_in_china; then
                 mirror=https://mirror.nju.edu.cn/archlinuxarm
             else
-                # https 证书有问题
-                mirror=http://mirror.archlinuxarm.org # geoip
+                mirror=https://mirror.archlinuxarm.org # geoip
             fi
         fi
 
@@ -2964,7 +2963,7 @@ download_and_extract_apk() {
     local extract_dir=$3
 
     install_pkg tar xz
-    is_in_china && mirror=http://mirror.nju.edu.cn/alpine || mirror=https://dl-cdn.alpinelinux.org/alpine
+    is_in_china && mirror=https://mirror.nju.edu.cn/alpine || mirror=https://dl-cdn.alpinelinux.org/alpine
     package_apk=$(curl -L $mirror/v$alpine_ver/main/$basearch/ | grep -oP "$package-[^-]*-[^-]*\.apk" | sort -u)
     if ! [ "$(wc -l <<<"$package_apk")" -eq 1 ]; then
         error_and_exit "find no/multi apks."
